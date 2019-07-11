@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-#include "gf2d_vector.h"
+#include "gfc_vector.h"
 
 Vector2D vector2d(double x, double y)
 {
@@ -411,10 +411,10 @@ void vector3d_rotate_about_vector(Vector3D *dst, Vector3D dir, Vector3D point, f
   memset( zrot, 0, sizeof( zrot ) );
   zrot[0][0] = zrot[1][1] = zrot[2][2] = 1.0F;
   
-  zrot[0][0] = cos( ( degrees*GF2D_DEGTORAD ) );
-  zrot[0][1] = sin( ( degrees*GF2D_DEGTORAD ) );
-  zrot[1][0] = -sin( ( degrees*GF2D_DEGTORAD ) );
-  zrot[1][1] = cos( ( degrees*GF2D_DEGTORAD ) );
+  zrot[0][0] = cos( ( degrees*GFC_DEGTORAD ) );
+  zrot[0][1] = sin( ( degrees*GFC_DEGTORAD ) );
+  zrot[1][0] = -sin( ( degrees*GFC_DEGTORAD ) );
+  zrot[1][1] = cos( ( degrees*GFC_DEGTORAD ) );
   
   rotation_concacenate( m, zrot, tmpmat );
   rotation_concacenate( tmpmat, im, rot );
@@ -429,7 +429,7 @@ void vector3d_rotate_about_x(Vector3D *vect, float angle)
   Vector3D temp;
   if (!vect)return;
   
-  angle=angle*GF2D_DEGTORAD;
+  angle=angle*GFC_DEGTORAD;
   
   temp.x=vect->x;
   temp.y=(vect->y*cos(angle))-(vect->z*sin(angle));
@@ -445,7 +445,7 @@ void vector3d_rotate_about_y(Vector3D *vect, float angle)
   Vector3D temp;
   if (!vect)return;
   
-  angle=angle*GF2D_DEGTORAD;
+  angle=angle*GFC_DEGTORAD;
   
   temp.y=vect->y;
   temp.x=(vect->x*cos(angle))+(vect->z*sin(angle));
@@ -461,7 +461,7 @@ void vector3d_rotate_about_z(Vector3D *vect, float angle)
   Vector3D temp;
   if (!vect)return;
   
-  angle=angle*GF2D_DEGTORAD;
+  angle=angle*GFC_DEGTORAD;
   
   temp.z=vect->z;
   temp.x=(vect->x*cos(angle))-(vect->y*sin(angle));
@@ -478,13 +478,13 @@ void vector3d_angle_vectors(Vector3D angles, Vector3D *forward, Vector3D *right,
   float angle;
   float sr, sp, sy, cr, cp, cy;
   
-  angle = angles.x * (GF2D_DEGTORAD);
+  angle = angles.x * (GFC_DEGTORAD);
   sy = sin(angle);
   cy = cos(angle);
-  angle = angles.y * (GF2D_DEGTORAD);
+  angle = angles.y * (GFC_DEGTORAD);
   sp = sin(angle);
   cp = cos(angle);
-  angle = angles.z * (GF2D_DEGTORAD);
+  angle = angles.z * (GFC_DEGTORAD);
   sr = sin(angle);
   cr = cos(angle);
   

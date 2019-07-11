@@ -1,10 +1,10 @@
-#ifndef __GF2D_VECTOR_H__
-#define __GF2D_VECTOR_H__
+#ifndef __GFC_VECTOR_H__
+#define __GFC_VECTOR_H__
 
 /**
- * gf2d vector
+ * gfc vector
  * @license The MIT License (MIT)
-   @copyright Copyright (c) 2017 EngineerOfLies
+   @copyright Copyright (c) 2019 EngineerOfLies
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -22,7 +22,7 @@
     SOFTWARE.
  */
 
-#include "gf2d_types.h"
+#include "gfc_types.h"
 
 /*
  * The Vector Types

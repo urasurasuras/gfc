@@ -1,9 +1,9 @@
-#ifndef __GF2D_INPUT_H__
-#define __GF2D_INPUT_H__
+#ifndef __GFC_INPUT_H__
+#define __GFC_INPUT_H__
 
 #include <SDL.h>
-#include "gf2d_text.h"
-#include "gf2d_list.h"
+#include "gfc_text.h"
+#include "gfc_list.h"
 
 typedef enum
 {
@@ -34,36 +34,36 @@ typedef struct
  * @brief initializes the config system
  * @param configFile if not NULL it will load the file for user input configuration
  */
-void gf2d_input_init(char *configFile);
+void gfc_input_init(char *configFile);
 
 /**
  * @brief called as often as you want your input data update.  Every Frame, or faster if you like
  * @note must be called or input will be stale
  */
-void gf2d_input_update();
+void gfc_input_update();
 
 /**
  * @brief load user configuration from file.
  * @note this operation appends to existing commands
  */
-void gf2d_input_commands_load(char *configFile);
+void gfc_input_commands_load(char *configFile);
 
 /**
  * @brief clears all user input configuration
  */
-void gf2d_input_commands_purge();
+void gfc_input_commands_purge();
 
 /**
  * @brief check if a command was pressed this frame
  * @param command the name of the command to check
  * @returns true if pressed, false otherwise
  */
-Uint8 gf2d_input_command_pressed(const char *command);
-Uint8 gf2d_input_command_held(const char *command);
-Uint8 gf2d_input_command_released(const char *command);
-Uint8 gf2d_input_command_down(const char *command);
+Uint8 gfc_input_command_pressed(const char *command);
+Uint8 gfc_input_command_held(const char *command);
+Uint8 gfc_input_command_released(const char *command);
+Uint8 gfc_input_command_down(const char *command);
 
-InputEventType gf2d_input_command_get_state(const char *command);
+InputEventType gfc_input_command_get_state(const char *command);
 
 /**
  * @brief report if the key provided has been pressed this frame
@@ -71,10 +71,10 @@ InputEventType gf2d_input_command_get_state(const char *command);
  * @returns true if pressed, false otherwise
  * 
  */
-Uint8 gf2d_input_key_pressed(const char *key);
-Uint8 gf2d_input_key_released(const char *key);
-Uint8 gf2d_input_key_held(const char *key);
-Uint8 gf2d_input_key_down(const char *key);
+Uint8 gfc_input_key_pressed(const char *key);
+Uint8 gfc_input_key_released(const char *key);
+Uint8 gfc_input_key_held(const char *key);
+Uint8 gfc_input_key_down(const char *key);
 
 /**
  * @brief configure callbacks for an input
@@ -85,7 +85,7 @@ Uint8 gf2d_input_key_down(const char *key);
  * @param onDelete the function to call when the input is deleted from memory to clean up
  * @param data pointer to any custom data you want associated with the input
  */
-void gf2d_input_set_callbacks(
+void gfc_input_set_callbacks(
     char *command,
     void (*onPress)(void *data),
     void (*onHold)(void *data),

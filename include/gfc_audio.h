@@ -1,11 +1,11 @@
-#ifndef __GF2D_AUDIO_H__
-#define __GF2D_AUDIO_H__
+#ifndef __GFC_AUDIO_H__
+#define __GFC_AUDIO_H__
 
 #include <SDL.h>
 #include <SDL_mixer.h>
-#include "gf2d_types.h"
-#include "gf2d_text.h"
-#include "gf2d_list.h"
+#include "gfc_types.h"
+#include "gfc_text.h"
+#include "gfc_list.h"
 
 typedef struct
 {
@@ -25,7 +25,7 @@ typedef struct
  * @param enableMP3 if true, initializes audio system with mp3 support, if available
  * @param enableOgg if true, initializes audio system with ogg vorbis support, if available
  */
-void gf2d_audio_init(
+void gfc_audio_init(
     Uint32 maxSounds,
     Uint32 channels,
     Uint32 channelGroups,
@@ -40,7 +40,7 @@ void gf2d_audio_init(
  * @param defaultChannel which channel to play this sound on if not specified
  * @return NULL on error or a pointer to the sound file
  */
-Sound *gf2d_sound_load(char *filename,float volume,int defaultChannel);
+Sound *gfc_sound_load(char *filename,float volume,int defaultChannel);
 
 /**
  * @brief play a sound file that has been loaded
@@ -48,17 +48,17 @@ Sound *gf2d_sound_load(char *filename,float volume,int defaultChannel);
  * @param channel which channel to play on, -1 means use default
  * @param group which group to play on, -1 means use default
  */
-void gf2d_sound_play(Sound *sound,int loops,float volume,int channel,int group);
+void gfc_sound_play(Sound *sound,int loops,float volume,int channel,int group);
 
 /**
  * @brief decrement references to the sound.  Free it when needed
  * @param sound the sound file to free
  */
-void gf2d_sound_free(Sound *sound);
+void gfc_sound_free(Sound *sound);
 
 /**
  * @brief frees all sounds from memory.  This will invalidate any help Sound pointers
  */
-void gf2d_sound_clear_all();
+void gfc_sound_clear_all();
 
 #endif

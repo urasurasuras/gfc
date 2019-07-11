@@ -1,4 +1,4 @@
-#include "gf2d_audio.h"
+#include "gfc_audio.h"
 
 #include "simple_logger.h"
 
@@ -10,10 +10,10 @@ typedef struct
 
 static SoundManager sound_manager={0,NULL};
 
-void gf2d_audio_close();
-void gf2d_sound_init(Uint32 max);
+void gfc_audio_close();
+void gfc_sound_init(Uint32 max);
 
-void gf2d_audio_init(
+void gfc_audio_init(
     Uint32 maxSounds,
     Uint32 channels,
     Uint32 channelGroups,
@@ -42,19 +42,19 @@ void gf2d_audio_init(
         slog("failed to initialize some audio support: %s",SDL_GetError());
     }
     atexit(Mix_Quit);
-    atexit(gf2d_audio_close);
-    gf2d_sound_init(maxSounds);
+    atexit(gfc_audio_close);
+    gfc_sound_init(maxSounds);
     slog("audio system initialized");
 }
 
-void gf2d_audio_close()
+void gfc_audio_close()
 {
     slog("audio system closed");    
 }
 
-void gf2d_sound_close()
+void gfc_sound_close()
 {
-    gf2d_sound_clear_all();
+    gfc_sound_clear_all();
     if (sound_manager.sound_list != NULL)
     {
         free(sound_manager.sound_list);
@@ -64,7 +64,7 @@ void gf2d_sound_close()
     slog("sound system closed");
 }
 
-void gf2d_sound_init(Uint32 max)
+void gfc_sound_init(Uint32 max)
 {
     if (!max)
     {
@@ -75,10 +75,10 @@ void gf2d_sound_init(Uint32 max)
     sound_manager.sound_list = (Sound *)malloc(sizeof(Sound)*max);
     memset (sound_manager.sound_list,0,sizeof(Sound)*max);
     slog("sound system initialized");
-    atexit(gf2d_sound_close);
+    atexit(gfc_sound_close);
 }
 
-void gf2d_sound_delete(Sound *sound)
+void gfc_sound_delete(Sound *sound)
 {
     if (!sound)return;
     if (sound->sound != NULL)
@@ -88,22 +88,22 @@ void gf2d_sound_delete(Sound *sound)
     memset(sound,0,sizeof(Sound));//clean up all other data
 }
 
-void gf2d_sound_free(Sound *sound)
+void gfc_sound_free(Sound *sound)
 {
     if (!sound) return;
     sound->ref_count--;
 }
 
-void gf2d_sound_clear_all()
+void gfc_sound_clear_all()
 {
     int i;
     for (i = 0;i < sound_manager.max_sounds;i++)
     {
-        gf2d_sound_delete(&sound_manager.sound_list[i]);// clean up the data
+        gfc_sound_delete(&sound_manager.sound_list[i]);// clean up the data
     }
 }
 
-Sound *gf2d_sound_new()
+Sound *gfc_sound_new()
 {
     int i;
     /*search for an unused sound address*/
@@ -120,7 +120,7 @@ Sound *gf2d_sound_new()
     {
         if (sound_manager.sound_list[i].ref_count == 0)
         {
-            gf2d_sound_delete(&sound_manager.sound_list[i]);// clean up the old data
+            gfc_sound_delete(&sound_manager.sound_list[i]);// clean up the old data
             sound_manager.sound_list[i].ref_count = 1;//set ref count
             return &sound_manager.sound_list[i];//return address of this array element
         }
@@ -129,12 +129,12 @@ Sound *gf2d_sound_new()
     return NULL;
 }
 
-Sound *gf2d_sound_get_by_filename(char * filename)
+Sound *gfc_sound_get_by_filename(char * filename)
 {
     int i;
     for (i = 0;i < sound_manager.max_sounds;i++)
     {
-        if (gf2d_line_cmp(sound_manager.sound_list[i].filepath,filename)==0)
+        if (gfc_line_cmp(sound_manager.sound_list[i].filepath,filename)==0)
         {
             return &sound_manager.sound_list[i];
         }
@@ -142,16 +142,16 @@ Sound *gf2d_sound_get_by_filename(char * filename)
     return NULL;// not found
 }
 
-Sound *gf2d_sound_load(char *filename,float volume,int defaultChannel)
+Sound *gfc_sound_load(char *filename,float volume,int defaultChannel)
 {
     Sound *sound;
-    sound = gf2d_sound_get_by_filename(filename);
+    sound = gfc_sound_get_by_filename(filename);
     if (sound)
     {
         sound->ref_count++;
         return sound;
     }
-    sound = gf2d_sound_new();
+    sound = gfc_sound_new();
     if (!sound)
     {
         return NULL;
@@ -160,7 +160,7 @@ Sound *gf2d_sound_load(char *filename,float volume,int defaultChannel)
     if (!sound->sound)
     {
         slog("failed to load sound file %s",filename);
-        gf2d_sound_free(sound);
+        gfc_sound_free(sound);
         return NULL;
     }
     sound->volume = volume;
@@ -168,7 +168,7 @@ Sound *gf2d_sound_load(char *filename,float volume,int defaultChannel)
     return sound;
 }
 
-void gf2d_sound_play(Sound *sound,int loops,float volume,int channel,int group)
+void gfc_sound_play(Sound *sound,int loops,float volume,int channel,int group)
 {
     int chan;
     float netVolume = 1;

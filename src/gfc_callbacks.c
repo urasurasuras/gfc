@@ -1,10 +1,10 @@
-#include "gf2d_callbacks.h"
+#include "gfc_callbacks.h"
 #include "simple_logger.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h> 
 
-Callback *gf2d_callback_new(void (*callback)(void *data),void *data)
+Callback *gfc_callback_new(void (*callback)(void *data),void *data)
 {
     Callback *c;
     c = (Callback *)malloc(sizeof(Callback));
@@ -19,13 +19,13 @@ Callback *gf2d_callback_new(void (*callback)(void *data),void *data)
     return c;
 }
 
-void gf2d_callback_free(Callback *callback)
+void gfc_callback_free(Callback *callback)
 {
     if (!callback)return;
     free(callback);
 }
 
-void gf2d_callback_call(Callback *callback)
+void gfc_callback_call(Callback *callback)
 {
     if (!callback)return;
     if (callback->callback)

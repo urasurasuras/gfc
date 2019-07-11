@@ -1,9 +1,9 @@
-#ifndef __MGL_TEXT__H__
-#define __MGL_TEXT__H__
+#ifndef __GFC_TEXT__H__
+#define __GFC_TEXT__H__
 /**
- * gf2d_text
+ * gfc_text
  * @license The MIT License (MIT)
-   @copyright Copyright (c) 2015 EngineerOfLies
+   @copyright Copyright (c) 2019 EngineerOfLies
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -26,8 +26,8 @@
  *  strings.  For use with unlimited strings mgl will use glib's GString type
  */
 #include <string.h>
-#include "gf2d_types.h"
-#include "gf2d_color.h"
+#include "gfc_types.h"
+#include "gfc_color.h"
 /**
  * constant lenth character buffers.
  * These will be used when the convenience of GString is not needed
@@ -38,25 +38,25 @@
  */
 typedef char TextWord[16];
 #define GF2DWORDLEN   16
-#define gf2d_word_cmp(a,b) (strncmp(a,b,GF2DWORDLEN))
-#define gf2d_word_cpy(dst,src) (strncpy(dst,src,GF2DWORDLEN))
-#define gf2d_word_clear(a)  (memset(a,0,sizeof(char)*GF2DWORDLEN))
+#define gfc_word_cmp(a,b) (strncmp(a,b,GF2DWORDLEN))
+#define gfc_word_cpy(dst,src) (strncpy(dst,src,GF2DWORDLEN))
+#define gfc_word_clear(a)  (memset(a,0,sizeof(char)*GF2DWORDLEN))
 /**
  * @brief 128 character buffer used for statements
  */
 typedef char TextLine[128];
 #define GF2DLINELEN   128
-#define gf2d_line_cmp(a,b) (strncmp(a,b,GF2DLINELEN))
-#define gf2d_line_cpy(dst,src) (strncpy(dst,src,GF2DLINELEN))
-#define gf2d_line_clear(a)  (memset(a,0,sizeof(char)*GF2DLINELEN))
+#define gfc_line_cmp(a,b) (strncmp(a,b,GF2DLINELEN))
+#define gfc_line_cpy(dst,src) (strncpy(dst,src,GF2DLINELEN))
+#define gfc_line_clear(a)  (memset(a,0,sizeof(char)*GF2DLINELEN))
 /**
  * @brief 512 character buffer used for text blocks
  */
 typedef char TextBlock[512];
 #define GF2DTEXTLEN   512
-#define gf2d_block_cmp(a,b) (strncmp(a,b,GF2DTEXTLEN))
-#define gf2d_block_cpy(dst,src) (strncpy(dst,src,GF2DTEXTLEN))
-#define gf2d_block_clear(a)  (memset(a,0,sizeof(char)*GF2DTEXTLEN))
+#define gfc_block_cmp(a,b) (strncmp(a,b,GF2DTEXTLEN))
+#define gfc_block_cpy(dst,src) (strncpy(dst,src,GF2DTEXTLEN))
+#define gfc_block_clear(a)  (memset(a,0,sizeof(char)*GF2DTEXTLEN))
 
 
 #endif

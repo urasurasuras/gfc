@@ -1,4 +1,4 @@
-#include "gf2d_text.h"
+#include "gfc_text.h"
 #include "simple_logger.h"
 
 
