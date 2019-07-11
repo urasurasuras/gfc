@@ -9,7 +9,7 @@ typedef struct
 }ListElementData;
 
 /**
- * @brief the GF2D List is an automatically expanding general purpose list
+ * @brief the GFC List is an automatically expanding general purpose list
  * the list stores data in contiguous memory
  */
 typedef struct

@@ -30,23 +30,23 @@
  */
 typedef struct
 {
-  double x;
-  double y;
+  float x;
+  float y;
 }Vector2D;
 
 typedef struct
 {
-  double x;
-  double y;
-  double z;
+  float x;
+  float y;
+  float z;
 }Vector3D;
 
 typedef struct
 {
-  double x;
-  double y;
-  double z;
-  double w;
+  float x;
+  float y;
+  float z;
+  float w;
 }Vector4D;
 
 #define vector_in_rect(v, r)  ((v.x >= r.x)&&(v.x < (r.x + r.w))&&(v.y >= r.y)&&(v.y < (r.y + r.h)))
@@ -54,17 +54,17 @@ typedef struct
 /**
  * @brief create and return an Vector2D
  */
-Vector2D vector2d(double x, double y);
+Vector2D vector2d(float x, float y);
 
 /**
  * @brief create and return an Vector3D
  */
-Vector3D vector3d(double x, double y, double z);
+Vector3D vector3d(float x, float y, float z);
 
 /**
  * @brief create and return an Vector4D
  */
-Vector4D vector4d(double x, double y, double z, double w);
+Vector4D vector4d(float x, float y, float z, float w);
 
 /**
  * @brief sets the outvector to a unit vector pointing at the angle specified
@@ -258,9 +258,9 @@ float vector4d_magnitude(Vector4D V);
 /**
  * @brief get the magnitude of the difference of the two vectors
  */
-double vector2d_magnitude_between(Vector2D a,Vector2D b);
-double vector3d_magnitude_between(Vector3D a,Vector3D b);
-double vector4d_magnitude_between(Vector4D a,Vector4D b);
+float vector2d_magnitude_between(Vector2D a,Vector2D b);
+float vector3d_magnitude_between(Vector3D a,Vector3D b);
+float vector4d_magnitude_between(Vector4D a,Vector4D b);
 
 void vector2d_normalize (Vector2D *V);
 void vector3d_normalize (Vector3D *V);

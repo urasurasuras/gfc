@@ -52,9 +52,7 @@ Mkfile.old
 dkms.conf
 
 #this program's executable
-gf2d
-ymir
-glorylike
+gfc
 
 #logs
 *.log

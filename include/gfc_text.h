@@ -37,26 +37,26 @@
  * @brief 16 character buffer used for short tags
  */
 typedef char TextWord[16];
-#define GF2DWORDLEN   16
-#define gfc_word_cmp(a,b) (strncmp(a,b,GF2DWORDLEN))
-#define gfc_word_cpy(dst,src) (strncpy(dst,src,GF2DWORDLEN))
-#define gfc_word_clear(a)  (memset(a,0,sizeof(char)*GF2DWORDLEN))
+#define GFCWORDLEN   16
+#define gfc_word_cmp(a,b) (strncmp(a,b,GFCWORDLEN))
+#define gfc_word_cpy(dst,src) (strncpy(dst,src,GFCWORDLEN))
+#define gfc_word_clear(a)  (memset(a,0,sizeof(char)*GFCWORDLEN))
 /**
  * @brief 128 character buffer used for statements
  */
 typedef char TextLine[128];
-#define GF2DLINELEN   128
-#define gfc_line_cmp(a,b) (strncmp(a,b,GF2DLINELEN))
-#define gfc_line_cpy(dst,src) (strncpy(dst,src,GF2DLINELEN))
-#define gfc_line_clear(a)  (memset(a,0,sizeof(char)*GF2DLINELEN))
+#define GFCLINELEN   128
+#define gfc_line_cmp(a,b) (strncmp(a,b,GFCLINELEN))
+#define gfc_line_cpy(dst,src) (strncpy(dst,src,GFCLINELEN))
+#define gfc_line_clear(a)  (memset(a,0,sizeof(char)*GFCLINELEN))
 /**
  * @brief 512 character buffer used for text blocks
  */
 typedef char TextBlock[512];
-#define GF2DTEXTLEN   512
-#define gfc_block_cmp(a,b) (strncmp(a,b,GF2DTEXTLEN))
-#define gfc_block_cpy(dst,src) (strncpy(dst,src,GF2DTEXTLEN))
-#define gfc_block_clear(a)  (memset(a,0,sizeof(char)*GF2DTEXTLEN))
+#define GFCTEXTLEN   512
+#define gfc_block_cmp(a,b) (strncmp(a,b,GFCTEXTLEN))
+#define gfc_block_cpy(dst,src) (strncpy(dst,src,GFCTEXTLEN))
+#define gfc_block_clear(a)  (memset(a,0,sizeof(char)*GFCTEXTLEN))
 
 
 #endif

@@ -3,21 +3,21 @@
 #include <math.h>
 #include "gfc_vector.h"
 
-Vector2D vector2d(double x, double y)
+Vector2D vector2d(float x, float y)
 {
   Vector2D vec;
   vector2d_set(vec,x, y);
   return vec;
 }
 
-Vector3D vector3d(double x, double y, double z)
+Vector3D vector3d(float x, float y, float z)
 {
   Vector3D vec;
   vector3d_set(vec,x, y, z);
   return vec;
 }
 
-Vector4D vector4d(double x, double y, double z, double w)
+Vector4D vector4d(float x, float y, float z, float w)
 {
   Vector4D vec;
   vector4d_set(vec,x, y, z, w);
@@ -99,21 +99,21 @@ void vector4d_set_magnitude(Vector4D * V,float magnitude)
   V->w *= magnitude;
 }
 
-double vector2d_magnitude_between(Vector2D a,Vector2D b)
+float vector2d_magnitude_between(Vector2D a,Vector2D b)
 {
     Vector2D c;
     vector2d_sub(c,a,b);
     return vector2d_magnitude(c);
 }
 
-double vector3d_magnitude_between(Vector3D a,Vector3D b)
+float vector3d_magnitude_between(Vector3D a,Vector3D b)
 {
     Vector3D c;
     vector3d_sub(c,a,b);
     return vector3d_magnitude(c);
 }
 
-double vector4d_magnitude_between(Vector4D a,Vector4D b)
+float vector4d_magnitude_between(Vector4D a,Vector4D b)
 {
     Vector4D c;
     vector4d_sub(c,a,b);
@@ -164,7 +164,7 @@ void vector4d_set_angle_by_radians(Vector4D *out,float radians)
 
 void vector2d_normalize (Vector2D *V)
 {
-  double M;
+  float M;
   if (!V)return;
   M = vector2d_magnitude (*V);
   if (M == 0.0f)

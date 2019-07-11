@@ -5,7 +5,7 @@
 
 #include "simple_logger.h"
 
-void *gf3d_allocate_array(size_t typeSize,size_t count)
+void *gfc_allocate_array(size_t typeSize,size_t count)
 {
     void *array;
     if (count <= 0)
