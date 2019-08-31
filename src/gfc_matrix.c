@@ -221,9 +221,9 @@ void gfc_matrix_make_translation(
 {
     if (!out)return;
     gfc_matrix_identity(out);
-    out[0][3] = move.x;
-    out[1][3] = move.y;
-    out[2][3] = move.z;
+    out[3][0] = move.x;
+    out[3][1] = move.y;
+    out[3][2] = move.z;
 }
 
 void gfc_matrix_translate(
