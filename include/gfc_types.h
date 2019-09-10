@@ -2,6 +2,7 @@
 #define __GFC_TYPES_H__
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <SDL.h>
 
 #ifndef M_PI
