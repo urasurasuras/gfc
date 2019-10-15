@@ -63,8 +63,10 @@ typedef short unsigned int Bool;
  */
 void *gfc_allocate_array(size_t typeSize,size_t count);
 
+#if defined(WIN32)
 #ifndef snprintf
 #define snprintf _snprintf
+#endif
 #endif
 
 #endif
