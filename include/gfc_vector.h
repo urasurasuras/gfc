@@ -23,6 +23,7 @@
  */
 
 #include "gfc_types.h"
+#include "simple_logger.h"
 
 /*
  * The Vector Types
@@ -50,7 +51,9 @@ typedef struct
 }Vector4D;
 
 #define vector_in_rect(v, r)  ((v.x >= r.x)&&(v.x < (r.x + r.w))&&(v.y >= r.y)&&(v.y < (r.y + r.h)))
-
+void vector2d_slog(Vector2D vec);
+void vector3d_slog(Vector3D vec);
+void vector4d_slog(Vector4D vec);
 /**
  * @brief create and return an Vector2D
  */
@@ -118,6 +121,7 @@ void angle_clamp_degrees(float *a);
  * @param v2 one of the components
  */
 void vector3d_cross_product(Vector3D *out, Vector3D v1, Vector3D v2);
+void vector4d_cross_product(Vector4D* out, Vector4D v1, Vector4D v2, Vector4D v3);
 
 /**
  * @brief Macro to get the dot product from a vector.

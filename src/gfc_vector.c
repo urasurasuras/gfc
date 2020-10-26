@@ -3,6 +3,15 @@
 #include <math.h>
 #include "gfc_vector.h"
 
+void vector2d_slog(Vector2D vec) {
+    slog("%.2f.%.2f", vec.x, vec.y);
+}
+void vector3d_slog(Vector3D vec) {
+    slog("%.2f.%.2f.%.2f", vec.x, vec.y, vec.z);
+}
+void vector4d_slog(Vector4D vec) {
+    slog("%.2f.%.2f.%.2f.%.2f", vec.x, vec.y, vec.z, vec.w);
+}
 Vector2D vector2d(float x, float y)
 {
   Vector2D vec;
@@ -581,6 +590,14 @@ void vector3d_cross_product(Vector3D *out, Vector3D v1, Vector3D v2)
   out->x = v1.y*v2.z - v1.z*v2.y;
   out->y = v1.z*v2.x - v1.x*v2.z;
   out->z = v1.x*v2.y - v1.y*v2.x;
+}
+
+void vector4d_cross_product(Vector4D *out, Vector4D v1, Vector4D v2, Vector4D v3)
+{
+    out->x = v1.y * (v2.z * v3.w - v3.z * v2.w) - v1.z * (v2.y * v3.w - v3.y * v2.w) + v1.w * (v2.y * v3.z - v2.z * v3.y);
+    out->y = -(v1.x * (v2.z * v3.w - v3.z * v2.w) - v1.z * (v2.x * v3.w - v3.x * v2.w) + v1.w * (v2.x * v3.z - v3.x * v2.z));
+    out->z = v1.x * (v2.y * v3.w - v3.y * v2.w) - v1.y * (v2.x * v3.w - v3.x * v2.w) + v1.w * (v2.x * v3.y - v3.x * v2.y);
+    out->w = -(v1.x * (v2.y * v3.z - v3.y * v2.z) - v1.y * (v2.x * v3.z - v3.x * v2.z) + v1.z * (v2.x * v3.y - v3.x * v2.y));
 }
 
 /*eol@eof*/

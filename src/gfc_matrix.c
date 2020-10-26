@@ -103,6 +103,7 @@ void gfc_matrix_rotate(
     float c = cos(a);
     float s = sin(a);
 
+    //slog("%.2f, %.2f, %.2f", axis.x, axis.y, axis.z);
     vector3d_normalize(&axis);
     
     vector3d_scale(temp,axis,(1 - c));
@@ -235,4 +236,93 @@ void gfc_matrix_translate(
     gfc_matrix_make_translation(translate,move);
     gfc_matrix_multiply(temp,translate,out);
     gfc_matrix_copy(out,temp);
+}
+
+void setRotationX(Matrix4 m_mat, float x)
+{
+    //gfc_matrix_identity(m_mat);
+
+    m_mat[1][1] = cos(x);
+    m_mat[1][2] = sin(x);
+    m_mat[2][1] = -sin(x);
+    m_mat[2][2] = cos(x);
+}
+
+void setRotationY(Matrix4 m_mat, float y)
+{
+    //gfc_matrix_identity(m_mat);
+
+    m_mat[0][0] = cos(y);
+    m_mat[0][2] = -sin(y);
+    m_mat[2][0] = sin(y);
+    m_mat[2][2] = cos(y);
+}
+
+void setRotationZ(Matrix4 m_mat, float z)
+{
+    //gfc_matrix_identity(m_mat);
+
+    m_mat[0][0] = cos(z);
+    m_mat[0][1] = sin(z);
+    m_mat[1][0] = -sin(z);
+    m_mat[1][1] = cos(z);
+}
+
+void setRotation(Matrix4 m_mat, Vector3D rotation) {
+    setRotationX(m_mat, rotation.x);
+    setRotationY(m_mat, rotation.y);
+    setRotationZ(m_mat, rotation.z);
+}   
+
+void gfc_matrix_inverse(Matrix4 out, Matrix4 in)
+{
+    int a, i, j;
+    Matrix4 result;
+    Vector4D v, vec[3];
+    float det = 0.0f;
+
+    det = getDeterminant(in);
+    if (!det) return;
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4; j++)
+        {
+            if (j != i)
+            {
+                a = j;
+                if (j > i) a = a - 1;
+                vec[a].x = (in[j][0]);
+                vec[a].y = (in[j][1]);
+                vec[a].z = (in[j][2]);
+                vec[a].w = (in[j][3]);
+            }
+        }
+        vector4d_cross_product(&v, vec[0], vec[1], vec[2]);
+
+        //v.cross(vec[0], vec[1], vec[2]);
+
+        result[0][i] = pow(-1.0f, i) * v.x / det;
+        result[1][i] = pow(-1.0f, i) * v.y / det;
+        result[2][i] = pow(-1.0f, i) * v.z / det;
+        result[3][i] = pow(-1.0f, i) * v.w / det;
+    }
+
+    gfc_matrix_copy(out, result);
+    /*this->setMatrix(out);*/
+}
+
+float getDeterminant(Matrix4 m_mat)
+{
+    Vector4D minor, v1, v2, v3;
+    float det;
+
+    v1 = vector4d(m_mat[0][0], m_mat[1][0], m_mat[2][0], m_mat[3][0]);
+    v2 = vector4d(m_mat[0][1], m_mat[1][1], m_mat[2][1], m_mat[3][1]);
+    v3 = vector4d(m_mat[0][2], m_mat[1][2], m_mat[2][2], m_mat[3][2]);
+
+    vector4d_cross_product(&minor, v1, v2, v3);
+
+    det = -(m_mat[0][3] * minor.x + m_mat[1][3] * minor.y + m_mat[2][3] * minor.z +
+        m_mat[3][3] * minor.w);
+    return det;
 }

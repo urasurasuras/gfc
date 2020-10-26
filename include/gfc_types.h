@@ -63,7 +63,9 @@ typedef short unsigned int Bool;
 void *gfc_allocate_array(size_t typeSize,size_t count);
 
 #ifndef snprintf
+#if _MSC_VER < 1700 
 #define snprintf _snprintf
+#endif
 #endif
 
 #endif
