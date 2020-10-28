@@ -269,9 +269,15 @@ void setRotationZ(Matrix4 m_mat, float z)
 }
 
 void setRotation(Matrix4 m_mat, Vector3D rotation) {
-    setRotationX(m_mat, rotation.x);
-    setRotationY(m_mat, rotation.y);
-    setRotationZ(m_mat, rotation.z);
+    Matrix4 rotX;
+    gfc_matrix_copy(rotX, m_mat);
+    setRotationX(rotX, rotation.x);
+
+    Matrix4 rotY;
+    gfc_matrix_identity(rotY);
+    setRotationZ(rotY, rotation.y);
+
+    gfc_matrix_multiply(m_mat, rotX, rotY);  
 }   
 
 void gfc_matrix_inverse(Matrix4 out, Matrix4 in)
