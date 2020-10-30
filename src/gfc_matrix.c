@@ -213,6 +213,7 @@ void gfc_matrix_view(
     out[3][1] = vector3d_dot_product(u, position)?-vector3d_dot_product(u, position):0;
     out[3][2] = vector3d_dot_product(f, position)?vector3d_dot_product(f, position):0;
     
+    //gfc_matrix_slog(out);
 }
 
 void gfc_matrix_make_translation(
@@ -269,15 +270,43 @@ void setRotationZ(Matrix4 m_mat, float z)
 }
 
 void setRotation(Matrix4 m_mat, Vector3D rotation) {
+    Matrix4 temp;
+
     Matrix4 rotX;
     gfc_matrix_copy(rotX, m_mat);
     setRotationX(rotX, rotation.x);
 
     Matrix4 rotY;
     gfc_matrix_identity(rotY);
-    setRotationZ(rotY, rotation.y);
+    setRotationY(rotY, rotation.y);
 
-    gfc_matrix_multiply(m_mat, rotX, rotY);  
+    gfc_matrix_multiply(temp, rotX, rotY);
+
+    Matrix4 rotZ;
+    gfc_matrix_identity(rotZ);
+    setRotationZ(rotZ, rotation.z);
+
+    gfc_matrix_multiply(m_mat, temp, rotZ);
+}   
+
+void setRotation_model(Matrix4 m_mat, Vector3D rotation) {
+    Matrix4 temp;
+
+    Matrix4 rotX;
+    gfc_matrix_copy(rotX, m_mat);
+    setRotationY(rotX, -rotation.y);
+
+    Matrix4 rotY;
+    gfc_matrix_identity(rotY);
+    setRotationX(rotY, -rotation.x);
+
+    gfc_matrix_multiply(temp, rotX, rotY);
+
+    Matrix4 rotZ;
+    gfc_matrix_identity(rotZ);
+    setRotationZ(rotZ, rotation.z);
+
+    gfc_matrix_multiply(m_mat, temp, rotZ);
 }   
 
 void gfc_matrix_inverse(Matrix4 out, Matrix4 in)

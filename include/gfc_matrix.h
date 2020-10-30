@@ -122,6 +122,7 @@ void setRotationX(Matrix4 m_mat, float x);
 void setRotationY(Matrix4 m_mat, float y);
 void setRotationZ(Matrix4 m_mat, float z);
 void setRotation(Matrix4 m_mat, Vector3D rotation);
+void setRotation_model(Matrix4 m_mat, Vector3D rotation);
 void gfc_matrix_inverse(Matrix4 out, Matrix4 in);
 
 #endif
