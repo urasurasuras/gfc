@@ -278,15 +278,54 @@ void setRotation(Matrix4 m_mat, Vector3D rotation) {
 
     Matrix4 rotY;
     gfc_matrix_identity(rotY);
-    setRotationY(rotY, rotation.y);
+    setRotationZ(rotY, -rotation.y);
 
     gfc_matrix_multiply(temp, rotX, rotY);
 
     Matrix4 rotZ;
     gfc_matrix_identity(rotZ);
-    setRotationZ(rotZ, rotation.z);
+    setRotationY(rotZ, rotation.z);
 
     gfc_matrix_multiply(m_mat, temp, rotZ);
+ /*
+    double ch = cos(rotation.y);
+    double sh = sin(rotation.y);
+    double ca = cos(rotation.x);
+    double sa = sin(rotation.x);
+    double cb = cos(rotation.z);
+    double sb = sin(rotation.z);
+
+    m_mat[0][0] = ch * ca;
+    m_mat[0][1] = sh * sb - ch * sa * cb;
+    m_mat[0][2] = ch * sa * sb + sh * cb;
+    m_mat[1][0] = sa;
+    m_mat[1][1] = ca * cb;
+    m_mat[1][2] = -ca * sb;
+    m_mat[2][0] = -sh * ca;
+    m_mat[2][1] = sh * sa * cb + ch * sb;
+    m_mat[2][2] = -sh * sa * sb + ch * cb;
+    */
+
+    /*
+    float cosH = cos(rotation.x);
+    float sinH = sin(rotation.x);
+
+    float cosP = cos(rotation.y);
+    float sinP = sin(rotation.y);
+
+    float cosB = cos(rotation.z);
+    float sinB = sin(rotation.z);
+
+    m_mat[0][0] = cosH * cosB + sinH * sinP *sinB;
+    m_mat[0][1] = sinB * cosP;
+    m_mat[0][2] = -sinH * cosB + cosH * sinP * sinB;
+    m_mat[1][0] = -cosH*sinB+sinH*sinP*cosB;
+    m_mat[1][1] = cosB * cosP;
+    m_mat[1][2] = sinB * sinH + cosH * sinP * cosB;
+    m_mat[2][0] = sinH * cosP;
+    m_mat[2][1] = -sinP;
+    m_mat[2][2] = cosH * cosP;
+    */
 }   
 
 void setRotation_model(Matrix4 m_mat, Vector3D rotation) {
