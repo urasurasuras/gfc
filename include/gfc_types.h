@@ -69,3 +69,5 @@ void *gfc_allocate_array(size_t typeSize,size_t count);
 #endif
 
 #endif
+
+#define FLOAT_TO_INT(x) ((x)>=0?(int)((x)+0.5):(int)((x)-0.5))
