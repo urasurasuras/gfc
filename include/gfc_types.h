@@ -19,6 +19,9 @@
 /* conversion factor for converting from degrees to radians*/
 #define GFC_DEGTORAD  0.017453292519943295769236907684886
 
+// Round floats to ints
+#define FLOAT_TO_INT(x) ((x)>=0?(int)((x)+0.5):(int)((x)-0.5))
+
 typedef short unsigned int Bool;
 
 #ifndef false
@@ -71,7 +74,7 @@ void *gfc_allocate_array(size_t typeSize,size_t count);
 #define snprintf _snprintf
 #endif
 #endif
-#define FLOAT_TO_INT(x) ((x)>=0?(int)((x)+0.5):(int)((x)-0.5))
+
 
 #endif
 

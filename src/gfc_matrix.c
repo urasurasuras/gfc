@@ -346,7 +346,23 @@ void setRotation_model(Matrix4 m_mat, Vector3D rotation) {
     setRotationZ(rotZ, rotation.z);
 
     gfc_matrix_multiply(m_mat, temp, rotZ);
-}   
+}  
+ 
+float getDeterminant(Matrix4 m_mat)
+{
+    Vector4D minor, v1, v2, v3;
+    float det;
+
+    v1 = vector4d(m_mat[0][0], m_mat[1][0], m_mat[2][0], m_mat[3][0]);
+    v2 = vector4d(m_mat[0][1], m_mat[1][1], m_mat[2][1], m_mat[3][1]);
+    v3 = vector4d(m_mat[0][2], m_mat[1][2], m_mat[2][2], m_mat[3][2]);
+
+    vector4d_cross_product(&minor, v1, v2, v3);
+
+    det = -(m_mat[0][3] * minor.x + m_mat[1][3] * minor.y + m_mat[2][3] * minor.z +
+        m_mat[3][3] * minor.w);
+    return det;
+}
 
 void gfc_matrix_inverse(Matrix4 out, Matrix4 in)
 {
@@ -385,18 +401,4 @@ void gfc_matrix_inverse(Matrix4 out, Matrix4 in)
     /*this->setMatrix(out);*/
 }
 
-float getDeterminant(Matrix4 m_mat)
-{
-    Vector4D minor, v1, v2, v3;
-    float det;
 
-    v1 = vector4d(m_mat[0][0], m_mat[1][0], m_mat[2][0], m_mat[3][0]);
-    v2 = vector4d(m_mat[0][1], m_mat[1][1], m_mat[2][1], m_mat[3][1]);
-    v3 = vector4d(m_mat[0][2], m_mat[1][2], m_mat[2][2], m_mat[3][2]);
-
-    vector4d_cross_product(&minor, v1, v2, v3);
-
-    det = -(m_mat[0][3] * minor.x + m_mat[1][3] * minor.y + m_mat[2][3] * minor.z +
-        m_mat[3][3] * minor.w);
-    return det;
-}
