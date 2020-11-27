@@ -35,6 +35,17 @@ void gfc_matrix_identity(Matrix4 one);
 void gfc_matrix_zero(Matrix4 zero);
 
 /**
+ * @brief multiply a matrix by a scaling matrix
+ * @param out the resulting scaled matrix
+ * @param scale the amount to scale the matrix by
+ * @param in the matrix to scale
+ */
+void gfc_matrix_scale(
+    Matrix4 out,
+    Vector3D scale,
+    Matrix4 in);
+
+/**
  * @brief create a translation matrix given the vector
  * @param out the output matrix, the contents of this matrix are overwritten
  * @param move the vector describing the translation
